@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>Disease Prediction</h2>
+  <form method="post" class="form-grid">
+    <label>
+      Age
+      <input type="number" name="age" min="0" max="120" />
+    </label>
+    <label>
+      Sex
+      <select name="sex">
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+    <div class="symptoms">
+      <p><strong>Select Symptoms</strong></p>
+      <div class="symptom-list">
+        {% if symptoms %}
+          {% for symptom in symptoms %}
+          <label class="symptom-item">
+            <input type="checkbox" name="symptoms" value="{{ symptom }}" />
+            <span>{{ symptom }}</span>
+          </label>
+          {% endfor %}
+        {% else %}
+          <p>No symptoms available yet. Ask the admin to upload a dataset.</p>
+        {% endif %}
+      </div>
+    </div>
+    <button type="submit" class="primary-btn">Predict Disease</button>
+  </form>
+</section>
+
+{% if prediction %}
+<section class="card">
+  <h2>Prediction Result</h2>
+  <div class="result-grid">
+    <div>
+      <p><strong>Predicted Disease:</strong> {{ prediction['disease'] }}</p>
+      <p><strong>Recommended Medicine:</strong> {{ prediction['medicine'] }}</p>
+      <p><strong>Recommended Dose:</strong> {{ prediction['dose'] }}</p>
+      <p><strong>Notes:</strong> {{ prediction['notes'] }}</p>
+    </div>
+    <div class="search-box">
+      <h3>Search Medicine</h3>
+      <input type="text" id="medicine-search" placeholder="Search prescribed medicine" />
+      <button type="button" class="secondary-btn" onclick="searchMedicine()">Search</button>
+      <a class="link-btn" href="{{ prediction['search_url'] }}" target="_blank" rel="noreferrer">Open Google Search</a>
+    </div>
+  </div>
+</section>
+{% elif prediction is not none %}
+<section class="card">
+  <h2>Prediction Result</h2>
+  <p>No disease matched the selected symptoms. Try selecting more symptoms or update the dataset.</p>
+</section>
+{% endif %}
+{% endblock %}

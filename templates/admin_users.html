@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>User Management</h2>
+  <form method="post" class="form-grid">
+    <label>
+      Username
+      <input type="text" name="username" required />
+    </label>
+    <label>
+      Password
+      <input type="password" name="password" required />
+    </label>
+    <label>
+      Role
+      <select name="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </label>
+    <button type="submit" class="primary-btn">Add User</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Existing Users</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user['username'] }}</td>
+          <td>{{ user['role'] }}</td>
+          <td class="actions">
+            <a class="secondary-btn" href="{{ url_for('edit_user', user_id=user['id']) }}">Edit</a>
+            <form method="post" action="{{ url_for('delete_user', user_id=user['id']) }}" onsubmit="return confirm('Delete this user?')">
+              <button type="submit" class="danger-btn">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

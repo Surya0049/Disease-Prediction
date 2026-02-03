@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="grid">
+  <div class="card">
+    <h2>Quick Actions</h2>
+    <div class="button-row">
+      <a class="primary-btn" href="{{ url_for('predict') }}">Run Prediction</a>
+      {% if session.get('role') == 'admin' %}
+      <a class="secondary-btn" href="{{ url_for('admin_users') }}">Manage Users</a>
+      <a class="secondary-btn" href="{{ url_for('admin_dataset') }}">Manage Dataset</a>
+      <a class="secondary-btn" href="{{ url_for('admin_settings') }}">Admin Settings</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="card">
+    <h2>System Snapshot</h2>
+    <ul class="stats">
+      <li><strong>{{ user_count }}</strong> total users</li>
+      <li><strong>{{ dataset_count }}</strong> disease records</li>
+      <li><strong>Live</strong> date & time at the footer</li>
+    </ul>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Future Enhancements (Suggested & Prepared)</h2>
+  <div class="feature-grid">
+    <div>
+      <h3>Model Intelligence</h3>
+      <p>Connect a machine learning model to improve prediction accuracy.</p>
+    </div>
+    <div>
+      <h3>Patient History</h3>
+      <p>Store historical predictions and download reports.</p>
+    </div>
+    <div>
+      <h3>Multi-Clinic Support</h3>
+      <p>Assign users to clinics and filter datasets by location.</p>
+    </div>
+    <div>
+      <h3>API Integration</h3>
+      <p>Add an API layer to integrate with mobile apps and IoT devices.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

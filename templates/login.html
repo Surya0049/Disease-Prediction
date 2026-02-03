@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login | Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+  </head>
+  <body class="login-body" style="background: {{ g.settings['background_css'] }};">
+    <div class="login-wrapper">
+      <div class="login-card">
+        <div class="login-header">
+          <h1>Welcome Back</h1>
+          <p>Sign in to access the disease prediction system.</p>
+        </div>
+        <form method="post" class="login-form">
+          <label>
+            Username
+            <input type="text" name="username" placeholder="Enter username" required />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" placeholder="Enter password" required />
+          </label>
+          <button type="submit" class="primary-btn">Login</button>
+        </form>
+        <button type="button" class="secondary-btn" onclick="cycleLoginBackground()">
+          Change Background
+        </button>
+        <div class="login-info">
+          <p><strong>Default Admin:</strong> admin / admin123</p>
+          <div id="login-datetime" class="login-datetime"></div>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-wrapper">
+              {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="datetime" id="live-datetime"></div>
+      <div class="authority">Authority: {{ g.settings['authority_name'] }}</div>
+    </footer>
+  </body>
+</html>

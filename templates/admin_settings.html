@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>Global Settings</h2>
+  <form method="post" class="form-grid">
+    <label>
+      Authority Name
+      <input type="text" name="authority_name" value="{{ settings['authority_name'] }}" required />
+    </label>
+    <label>
+      Background CSS (applies to all pages)
+      <input
+        type="text"
+        name="background_css"
+        value="{{ settings['background_css'] }}"
+        placeholder="{{ default_background }}"
+      />
+    </label>
+    <button type="submit" class="primary-btn">Save Settings</button>
+  </form>
+  <div class="preset-grid">
+    <button class="secondary-btn" type="button" onclick="applyPreset('{{ default_background }}')">Default</button>
+    <button class="secondary-btn" type="button" onclick="applyPreset('linear-gradient(120deg, #0f2027, #203a43, #2c5364)')">Midnight</button>
+    <button class="secondary-btn" type="button" onclick="applyPreset('linear-gradient(120deg, #f6d365, #fda085)')">Warm Glow</button>
+    <button class="secondary-btn" type="button" onclick="applyPreset('linear-gradient(120deg, #a1c4fd, #c2e9fb)')">Sky Breeze</button>
+  </div>
+</section>
+{% endblock %}
