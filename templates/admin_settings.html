@@ -16,6 +16,19 @@
         placeholder="{{ default_background }}"
       />
     </label>
+    <label>
+      Background Image URL (optional)
+      <input
+        type="url"
+        name="background_image_url"
+        value="{{ settings['background_image_url'] }}"
+        placeholder="https://example.com/wallpaper.jpg"
+      />
+    </label>
+    <label>
+      Quick Color
+      <input type="color" name="background_color" value="#1b4f8f" onchange="applyColor(this.value)" />
+    </label>
     <button type="submit" class="primary-btn">Save Settings</button>
   </form>
   <div class="preset-grid">

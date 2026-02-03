@@ -31,6 +31,13 @@ function applyPreset(preset) {
   }
 }
 
+function applyColor(color) {
+  const input = document.querySelector('input[name="background_css"]');
+  if (input) {
+    input.value = color;
+  }
+}
+
 function searchMedicine() {
   const input = document.getElementById('medicine-search');
   if (!input) {
@@ -40,6 +47,10 @@ function searchMedicine() {
   if (query) {
     window.open(`https://www.google.com/search?q=${query}`, '_blank');
   }
+}
+
+function printPage() {
+  window.print();
 }
 
 setInterval(updateDateTime, 1000);

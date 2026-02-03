@@ -2,7 +2,8 @@
 {% block content %}
 <section class="card">
   <h2>Upload Dataset</h2>
-  <p>Supported columns: disease, symptoms, medicine, dose, notes</p>
+  <p>Supported columns: disease, symptoms, medicine, dose, accuracy, notes.</p>
+  <p>Binary datasets (0/1 symptoms) are also supported using the fixed symptom order.</p>
   <form method="post" enctype="multipart/form-data" class="form-grid">
     <input type="file" name="dataset_file" accept=".csv,.xlsx,.xls" />
     <button type="submit" class="secondary-btn">Upload File</button>
@@ -22,11 +23,15 @@
     </label>
     <label>
       Medicine
-      <input type="text" name="medicine" required />
+      <input type="text" name="medicine" placeholder="Optional" />
     </label>
     <label>
       Dose
-      <input type="text" name="dose" required />
+      <input type="text" name="dose" placeholder="Optional" />
+    </label>
+    <label>
+      Accuracy
+      <input type="text" name="accuracy" placeholder="Optional (%)" />
     </label>
     <label>
       Notes
@@ -46,6 +51,7 @@
           <th>Symptoms</th>
           <th>Medicine</th>
           <th>Dose</th>
+          <th>Accuracy</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -56,6 +62,7 @@
           <td>{{ entry['symptoms'] }}</td>
           <td>{{ entry['medicine'] }}</td>
           <td>{{ entry['dose'] }}</td>
+          <td>{{ entry['accuracy'] or '—' }}</td>
           <td class="actions">
             <a class="secondary-btn" href="{{ url_for('edit_dataset', entry_id=entry['id']) }}">Edit</a>
             <form method="post" action="{{ url_for('delete_dataset', entry_id=entry['id']) }}" onsubmit="return confirm('Delete this record?')">

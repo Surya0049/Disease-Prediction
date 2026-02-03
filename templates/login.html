@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
     <script defer src="{{ url_for('static', filename='app.js') }}"></script>
   </head>
-  <body class="login-body" style="background: {{ g.settings['background_css'] }};">
+  <body class="login-body" style="{{ g.background_style }}">
     <div class="login-wrapper">
       <div class="login-card">
         <div class="login-header">

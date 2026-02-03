@@ -43,7 +43,13 @@
       <p><strong>Predicted Disease:</strong> {{ prediction['disease'] }}</p>
       <p><strong>Recommended Medicine:</strong> {{ prediction['medicine'] }}</p>
       <p><strong>Recommended Dose:</strong> {{ prediction['dose'] }}</p>
+      {% if prediction['accuracy'] %}
+      <p><strong>Accuracy:</strong> {{ prediction['accuracy'] }}</p>
+      {% endif %}
       <p><strong>Notes:</strong> {{ prediction['notes'] }}</p>
+      <div class="button-row">
+        <button type="button" class="secondary-btn" onclick="printPage()">Print / Save PDF</button>
+      </div>
     </div>
     <div class="search-box">
       <h3>Search Medicine</h3>

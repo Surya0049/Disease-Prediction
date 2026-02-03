@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
     <script defer src="{{ url_for('static', filename='app.js') }}"></script>
   </head>
-  <body style="background: {{ g.settings['background_css'] }};">
+  <body style="{{ g.background_style }}">
     <header class="top-nav">
       <div class="brand">
         <span class="logo">🩺</span>
