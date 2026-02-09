@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>Edit Dataset Record</h2>
+  <form method="post" class="form-grid">
+    <label>
+      Disease
+      <input type="text" name="disease" value="{{ entry['disease'] }}" required />
+    </label>
+    <label>
+      Symptoms (comma-separated)
+      <input type="text" name="symptoms" value="{{ entry['symptoms'] }}" required />
+    </label>
+    <label>
+      Medicine
+      <input type="text" name="medicine" value="{{ entry['medicine'] }}" />
+    </label>
+    <label>
+      Dose
+      <input type="text" name="dose" value="{{ entry['dose'] }}" />
+    </label>
+    <label>
+      Accuracy
+      <input type="text" name="accuracy" value="{{ entry['accuracy'] }}" />
+    </label>
+    <label>
+      Notes
+      <input type="text" name="notes" value="{{ entry['notes'] }}" />
+    </label>
+    <button type="submit" class="primary-btn">Save Changes</button>
+  </form>
+</section>
+{% endblock %}

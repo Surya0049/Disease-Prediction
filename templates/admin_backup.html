@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>Backup & Restore</h2>
+  <p>Download a backup of the database or restore from a previous backup file.</p>
+  <div class="button-row">
+    <a class="primary-btn" href="{{ url_for('download_backup') }}">Download Backup</a>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Restore Backup</h2>
+  <form method="post" enctype="multipart/form-data" class="form-grid">
+    <input type="file" name="backup_file" accept=".db" required />
+    <button type="submit" class="danger-btn">Restore Backup</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title or "Disease Prediction System" }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+  </head>
+  <body style="{{ g.background_style }}">
+    <header class="top-nav">
+      <div class="brand">
+        <span class="logo">🩺</span>
+        <div>
+          <h1>Disease Prediction</h1>
+          <p>Welcome, {{ session.get('username', 'Guest') }}</p>
+        </div>
+      </div>
+      <nav>
+        <a class="nav-link" href="{{ url_for('dashboard') }}">Home</a>
+        <button class="nav-link" type="button" onclick="history.back()">Back</button>
+        {% if session.get('user_id') %}
+        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+      </nav>
+    </header>
+
+    <main class="content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-wrapper">
+            {% for category, message in messages %}
+              <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <div class="datetime" id="live-datetime"></div>
+      <div class="authority">Authority: {{ g.settings['authority_name'] }}</div>
+    </footer>
+  </body>
+</html>

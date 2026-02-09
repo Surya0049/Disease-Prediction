@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>Edit User</h2>
+  <form method="post" class="form-grid">
+    <label>
+      Username
+      <input type="text" name="username" value="{{ user['username'] }}" required />
+    </label>
+    <label>
+      Role
+      <select name="role">
+        <option value="user" {% if user['role'] == 'user' %}selected{% endif %}>User</option>
+        <option value="admin" {% if user['role'] == 'admin' %}selected{% endif %}>Admin</option>
+      </select>
+    </label>
+    <label>
+      New Password (optional)
+      <input type="password" name="new_password" placeholder="Leave blank to keep current" />
+    </label>
+    <button type="submit" class="primary-btn">Save Changes</button>
+  </form>
+</section>
+{% endblock %}
